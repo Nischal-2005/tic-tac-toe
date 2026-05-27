@@ -83,7 +83,7 @@ const Board = () => {
         </button>
       }
       <footer className="footer mt-4 px-4 py-2 text-2xl font-semibold ">
-        Kattel Nischal
+        Nischal Kattel
       </footer>
     </div>
   );
