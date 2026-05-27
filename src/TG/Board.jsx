@@ -54,7 +54,6 @@ const Board = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-4">Tic Tac Toe</h1>
-
       <div className="grid grid-cols-3 gap-2 bg-white p-4 rounded-xl shadow-lg">
         <Square onClick={() => handleClick(0)} value={state[0]} />
         <Square onClick={() => handleClick(1)} value={state[1]} />
@@ -83,6 +82,9 @@ const Board = () => {
           Reset Game
         </button>
       }
+      <footer className="footer mt-4 px-4 py-2 text-2xl font-semibold ">
+        Nischal Kattel
+      </footer>
     </div>
   );
 };
