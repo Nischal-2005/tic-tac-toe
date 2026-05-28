@@ -3,6 +3,10 @@ import Square from "./Square";
 
 const Board = () => {
   const [state, setState] = useState(Array(9).fill(null));
+
+  const [player1, setPlayer1] = useState("X");
+  const [player2, setPlayer2] = useState("O");
+
   const [isXTurn, setIsXTurn] = useState(true);
 
   const checkWinner = () => {
@@ -33,13 +37,11 @@ const Board = () => {
   const winner = checkWinner();
 
   const handleClick = (index) => {
-    if (state[index] !== null) return;
-
-    if (winner) return;
+    if (state[index] !== null || winner) return;
 
     const copyState = [...state];
 
-    copyState[index] = isXTurn ? "X" : "Y";
+    copyState[index] = isXTurn ? player1 : player2;
 
     setState(copyState);
 
@@ -54,6 +56,31 @@ const Board = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-4">Tic Tac Toe</h1>
+
+      <div className="flex gap-4 mb-4">
+        <div>
+          <label className="block font-semibold">Player 1</label>
+          <input
+            type="text"
+            maxLength={1}
+            value={player1}
+            onChange={(e) => setPlayer1(e.target.value)}
+            className="border px-2 py-1 rounded"
+          />
+        </div>
+
+        <div>
+          <label className="block font-semibold">Player 2</label>
+          <input
+            type="text"
+            maxLength={1}
+            value={player2}
+            onChange={(e) => setPlayer2(e.target.value)}
+            className="border px-2 py-1 rounded"
+          />
+        </div>
+      </div>
+
       <div className="grid grid-cols-3 gap-2 bg-white p-4 rounded-xl shadow-lg">
         <Square onClick={() => handleClick(0)} value={state[0]} />
         <Square onClick={() => handleClick(1)} value={state[1]} />
@@ -67,22 +94,25 @@ const Board = () => {
         <Square onClick={() => handleClick(7)} value={state[7]} />
         <Square onClick={() => handleClick(8)} value={state[8]} />
       </div>
+
       {winner ? (
         <h2 className="text-2xl font-bold text-green-600 mt-4">
           Winner is {winner}
         </h2>
       ) : (
-        <p className="mt-4 text-xl font-semibold">Turn:{isXTurn ? "X" : "Y"}</p>
+        <p className="mt-4 text-xl font-semibold">
+          Turn : {isXTurn ? player1 : player2}
+        </p>
       )}
-      {
-        <button
-          onClick={resetGame}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-        >
-          Reset Game
-        </button>
-      }
-      <footer className="footer mt-4 px-4 py-2 text-2xl font-semibold ">
+
+      <button
+        onClick={resetGame}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        Reset Game
+      </button>
+
+      <footer className="footer mt-4 px-4 py-2 text-2xl font-semibold">
         Nischal Kattel
       </footer>
     </div>
