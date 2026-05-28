@@ -1,3 +1,3 @@
 view my game
 
-https://nischal-tic-tac-toe.netlify.app/
+https://new-tictac.netlify.app/
